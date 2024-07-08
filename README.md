@@ -1,1 +1,0 @@
-# NarzIT_Lab6

@@ -13,30 +13,32 @@ następnie utworzyć nowy plik pathFile2.y i przekonwertować dane zgodnie z now
 import sys
 
 class d_File:
-    def __init__(self,path):
+    def __init__(self,path,mode):
         try:
-            self.handle = open(path)
+            self.handle = open(path,mode)
             self.ext = self.handle.name.split('.')[1]
         except Exception as e:
             self.handle = None
             self.ext = None
-            print('failed to open file.')
+            raise IOError(f"Nie udało się otworzyc pliku {path}.")
 
 def importdata():
+    try:
+        #read the 2nd and 3rd args from console call (the first one is the scriptname)
+        file1 = d_File(sys.argv[1],'r')
+        file2 = d_File(sys.argv[2],'w')
+
+    except IOError as e:
+        print(e)
+        return None
+
+    allowed = ['.xml','.json','.yml']
+
+    if file1.ext not in allowed or file2.ext not in allowed:
+        print('Niepoprawny format.')
+        return None
     
-    #read the 2nd and 3rd args from console call (the first one is the scriptname)
-    file1 = d_File(sys.argv[1])
-    file2 = d_File(sys.argv[2])
-
-    print(file1.ext,file2.ext)
-
-
-
-
-
-
-importdata()
-
+    return (file1,file2)
 
 
 
