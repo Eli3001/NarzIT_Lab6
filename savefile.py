@@ -4,19 +4,17 @@ from dicttoxml import dicttoxml
 import yaml
 
 
-def save(data : dict, fname : str, ext : str):
+def savef(data : dict, file):
 
-    if ext == ".json":
-        with open(fname, "w") as outfile: 
-            json.dump(data, outfile)
+    if file.ext == "json":            
+        json.dump(data,file.handle, indent=4)
 
-    elif ext == '.xml':
-        xmldata = dicttoxml(data)
-        with open(fname, "w") as outfile: 
-            outfile.write(xmldata)
-       
-    elif ext in ['.yml','.yaml']:
-        with open(fname, "w") as outfile: 
-            yaml.dump(data, outfile)
+    elif file.ext == 'xml':
+        xmldata = dicttoxml(data).decode('utf-8')
+        print('\n\n',xmldata)
+        file.handle.write(xmldata)
+        
+    elif file.ext in ['yml','yaml']:
+        yaml.dump(data, file.handle)
 
 

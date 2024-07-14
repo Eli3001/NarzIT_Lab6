@@ -9,11 +9,11 @@ from parseinput import d_File
 def source_to_dict(file : d_File):
     dictobj = {}
 
-    if file.ext == '.json':
-        dictobj = json.loads(file.handle)
-    elif file.ext == '.xml':
+    if file.ext == 'json':
+        dictobj = json.load(file.handle)
+    elif file.ext == 'xml':
         dictobj = xmltodict.parse(file.handle) 
-    elif file.ext in ['.yml','.yaml']:
+    elif file.ext in ['yml','yaml']:
         dictobj = yaml.safe_load(file.handle)
 
     return dictobj
