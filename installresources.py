@@ -1,7 +1,7 @@
 
 # tutaj importowane są wszystkie uzywane biblioteki
 
-import pip
+from pip._internal import main as pipmain
 
 install_list = [
     "PyYAML",
@@ -9,16 +9,10 @@ install_list = [
     'dicttoxml'
 ]
 
-def install(package):
-    if hasattr(pip, 'main'):
-        pip.main(['install', package])
-    else:
-        pip._internal.main(['install', package])
-
 # lista bibliotek do zainstalowania
 
 def install_all():
     for package in install_list:
-        install(package)
+        pipmain(['install', package])
 
 
