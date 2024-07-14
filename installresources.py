@@ -15,7 +15,8 @@ install_list = [
     "json",
     "xml.etree.ElementTree",
     "PyYAML",
-    'xmltodict'
+    'xmltodict',
+    'dicttoxml'
 ]
 
 for package in install_list:
