@@ -32,7 +32,7 @@ def importdata():
         print(e)
         return None
 
-    allowed = ['.xml','.json','.yml']
+    allowed = ['.xml','.json','.yml','.yaml']
 
     if file1.ext not in allowed or file2.ext not in allowed:
         print('Niepoprawny format.')
